@@ -101,5 +101,13 @@
     setTimeout(function () {
       progressBar.style.width = targetWidth;
     }, 80);
+
+    // Auto-scroll down to the detailed result card smoothly so it centers in view
+    var resultCard = document.getElementById("resultCard");
+    if (resultCard) {
+      setTimeout(function () {
+        resultCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 550);
+    }
   }
 })();

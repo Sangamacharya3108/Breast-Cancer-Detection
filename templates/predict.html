@@ -65,12 +65,37 @@
       <div class="card border-0 shadow rounded-4 h-100">
         <div class="card-body p-4 p-md-5 d-flex flex-column">
           <h2 class="h5 fw-bold mb-3">Preview</h2>
-          <div id="previewWrap" class="preview-wrap flex-grow-1 rounded-4 d-flex align-items-center justify-content-center mb-3">
-            <div id="previewPlaceholder" class="text-center text-muted p-4">
+          <div id="previewWrap" class="preview-wrap flex-grow-1 rounded-4 d-flex align-items-center justify-content-center mb-3 position-relative">
+            <div id="previewPlaceholder" class="text-center text-muted p-4 {% if uploaded_image %}d-none{% endif %}">
               <i class="bi bi-eye display-4 d-block mb-2 opacity-50"></i>
               <span class="small">Image preview will appear here</span>
             </div>
-            <img id="imagePreview" src="" alt="Upload preview" class="img-fluid rounded-3 d-none shadow-sm">
+            <img 
+              id="imagePreview" 
+              src="{% if uploaded_image %}{{ url_for('serve_upload', filename=uploaded_image) }}{% endif %}" 
+              alt="Upload preview" 
+              class="img-fluid rounded-3 {% if not uploaded_image %}d-none{% endif %} shadow-sm"
+            >
+            
+            {% if prediction is not none and not error %}
+            <div class="prediction-overlay position-absolute bottom-0 start-0 end-0 p-3 m-2 rounded-3 d-flex align-items-center justify-content-between {% if result_class == 'malignant' %}overlay-malignant{% else %}overlay-benign{% endif %}">
+              <div>
+                <span class="text-uppercase small fw-bold opacity-75 d-block" style="font-size: 0.7rem; letter-spacing: 0.05em;">Result</span>
+                <span class="fw-bold fs-5">
+                  {% if result_class == 'malignant' %}
+                  <i class="bi bi-exclamation-octagon-fill me-1"></i>
+                  {% else %}
+                  <i class="bi bi-check-circle-fill me-1"></i>
+                  {% endif %}
+                  {{ prediction }}
+                </span>
+              </div>
+              <div class="text-end">
+                <span class="text-uppercase small fw-bold opacity-75 d-block" style="font-size: 0.7rem; letter-spacing: 0.05em;">Confidence</span>
+                <span class="fw-bold fs-5">{{ confidence }}%</span>
+              </div>
+            </div>
+            {% endif %}
           </div>
 
           {% if prediction is not none and not error %}

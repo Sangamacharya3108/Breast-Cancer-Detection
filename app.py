@@ -23,7 +23,7 @@ import uuid
 from datetime import datetime
 from typing import Tuple, List, Dict, Any, Optional
 
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, redirect, render_template, request, session, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 
 # Local Module Imports
@@ -209,6 +209,7 @@ def predict():
     result_class: Optional[str] = None
     error: Optional[str] = None
     error_category: Optional[str] = None  # "irrelevant" (non-medical) vs common errors
+    uploaded_image: Optional[str] = None
 
     if request.method == "POST":
         file = request.files.get("image")
@@ -245,6 +246,7 @@ def predict():
                             save_path, name
                         )
                         _append_history(name, prediction, confidence, result_class)
+                        uploaded_image = unique_name
 
     return render_template(
         "predict.html",
@@ -254,6 +256,7 @@ def predict():
         result_class=result_class,
         error=error,
         error_category=error_category,
+        uploaded_image=uploaded_image,
     )
 
 
@@ -275,6 +278,12 @@ def clear_history():
     """Clears all session prediction entries and redirects back to history overview."""
     session.pop("history", None)
     return redirect(url_for("history"))
+
+
+@app.route("/uploads/<filename>")
+def serve_upload(filename: str):
+    """Serves uploaded files from the UPLOAD_DIR directory safely."""
+    return send_from_directory(UPLOAD_DIR, filename)
 
 
 # ===========================================================================
