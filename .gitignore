@@ -1,16 +1,13 @@
-# Python bytecode caches
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Environments
 .venv/
 venv/
 ENV/
 env/
 .env
 
-# IDE / Editor configurations
 .vscode/
 .idea/
 *.suo
@@ -20,10 +17,8 @@ env/
 *.swp
 .DS_Store
 
-# Temporary uploads / Local user files
 uploads/*
 !uploads/.gitkeep
 
-# Redundant files & duplicate drafts (Identified in Project Audit)
 projectbcfinalD.html
 Breast_Cancer(histopathology).ipynb
