@@ -1,0 +1,6 @@
+flask>=3.0.0
+werkzeug>=3.0.0
+numpy>=1.24.0
+pillow>=10.0.0
+# Deep learning inference (prediction model + optional MobileNetV2 validator)
+# tensorflow>=2.15.0

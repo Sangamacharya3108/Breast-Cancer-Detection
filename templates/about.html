@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<div class="page-header py-4 border-bottom border-light">
+  <div class="container">
+    <h1 class="h2 fw-bold mb-1">About the project</h1>
+    <p class="text-secondary mb-0">Breast cancer detection from histopathology using deep learning (CNN &amp; Transfer Learning).</p>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="row g-5">
+    <div class="col-lg-7">
+      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4">
+        <h2 class="h4 fw-bold mb-3">Overview</h2>
+        <p class="text-secondary mb-3">
+          This application demonstrates <strong>binary classification</strong> of breast histopathology images into
+          <strong>Benign</strong> (non-cancerous tissue patterns) and <strong>Malignant</strong> (cancerous patterns),
+          using <strong>Deep Learning</strong> (Convolutional Neural Networks &amp; Transfer Learning) trained on
+          labeled datasets such as the IDC (Invasive Ductal Carcinoma) patch collection on Kaggle.
+        </p>
+        <p class="text-secondary mb-0">
+          The web layer is built with <strong>Flask</strong> and a responsive <strong>Bootstrap 5</strong> frontend.
+          Uploaded images are validated before inference — only genuine histopathology slides are accepted.
+        </p>
+      </div>
+
+      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+        <h2 class="h4 fw-bold mb-4">Models & approaches</h2>
+        <ul class="list-unstyled mb-0">
+          <li class="d-flex gap-3 mb-4">
+            <span class="model-badge rounded-3"><i class="bi bi-grid-1x2"></i></span>
+            <div>
+              <strong>Custom CNN</strong>
+              <p class="text-secondary small mb-0">Stacked convolutional blocks with pooling and dense layers—baseline feature learning on histopathology patches.</p>
+            </div>
+          </li>
+          <li class="d-flex gap-3 mb-4">
+            <span class="model-badge rounded-3"><i class="bi bi-layers"></i></span>
+            <div>
+              <strong>ResNet50</strong>
+              <p class="text-secondary small mb-0">Residual connections allow training of very deep networks; ResNet50 is a proven transfer-learning backbone for medical image analysis.</p>
+            </div>
+          </li>
+          <li class="d-flex gap-3 mb-4">
+            <span class="model-badge rounded-3"><i class="bi bi-lightning"></i></span>
+            <div>
+              <strong>EfficientNetB0</strong>
+              <p class="text-secondary small mb-0">Compound scaling balances depth, width, and resolution—accurate and efficient for histopathology transfer learning.</p>
+            </div>
+          </li>
+          <li class="d-flex gap-3">
+            <span class="model-badge rounded-3"><i class="bi bi-phone"></i></span>
+            <div>
+              <strong>MobileNetV2</strong>
+              <p class="text-secondary small mb-0">Lightweight inverted-residual backbone enabling fast inference for real-time histopathology prediction on limited hardware.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="card border-0 shadow rounded-4 p-4 p-md-5 mb-4 sticky-lg-top tech-stack-card">
+        <h2 class="h5 fw-bold mb-4">Tech stack</h2>
+        <div class="d-flex flex-column gap-3">
+          <div class="tech-pill d-flex align-items-center gap-3 p-3 rounded-3">
+            <i class="bi bi-code-slash fs-4 text-primary"></i>
+            <div>
+              <div class="fw-semibold">Backend</div>
+              <small class="text-muted">Python · Flask · Jinja2</small>
+            </div>
+          </div>
+          <div class="tech-pill d-flex align-items-center gap-3 p-3 rounded-3">
+            <i class="bi bi-braces fs-4 text-primary"></i>
+            <div>
+              <div class="fw-semibold">Frontend</div>
+              <small class="text-muted">HTML5 · CSS3 · Bootstrap 5 · Vanilla JS</small>
+            </div>
+          </div>
+          <div class="tech-pill d-flex align-items-center gap-3 p-3 rounded-3">
+            <i class="bi bi-gpu-card fs-4 text-primary"></i>
+            <div>
+              <div class="fw-semibold">Deep Learning</div>
+              <small class="text-muted">CNN · Transfer Learning · TensorFlow / Keras · MobileNetV2 · ResNet50 · EfficientNetB0</small>
+            </div>
+          </div>
+          <div class="tech-pill d-flex align-items-center gap-3 p-3 rounded-3">
+            <i class="bi bi-diagram-3 fs-4 text-primary"></i>
+            <div>
+              <div class="fw-semibold">Models Used</div>
+              <small class="text-muted">CNN · ResNet50 · EfficientNetB0 · MobileNetV2</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning border-0 rounded-4 shadow-sm mb-0">
+        <strong><i class="bi bi-shield-exclamation me-2"></i>Disclaimer</strong>
+        <p class="small mb-0 mt-2">This tool is for education and demonstration only. It is not a medical device and must not be used for diagnosis or treatment decisions.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}History{% endblock %}
+{% block content %}
+<div class="page-header py-4 border-bottom border-light">
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <div>
+      <h1 class="h2 fw-bold mb-1">Prediction history</h1>
+      <p class="text-secondary mb-0">Recent runs from this browser session.</p>
+    </div>
+    {% if history %}
+    <a href="{{ url_for('clear_history') }}" class="btn btn-outline-danger btn-sm rounded-pill">Clear history</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="container py-5">
+  {% if history %}
+  <div class="card border-0 shadow rounded-4 overflow-hidden">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0 history-table">
+        <thead class="table-light">
+          <tr>
+            <th scope="col" class="ps-4">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Result</th>
+            <th scope="col" class="text-end pe-4">Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in history %}
+          <tr>
+            <td class="ps-4 text-muted small">{{ loop.index }}</td>
+            <td>
+              <span class="fw-medium text-break">{{ row.filename }}</span>
+              <div class="small text-muted">{{ row.time }}</div>
+            </td>
+            <td>
+              {% if row.result_class == 'malignant' %}
+              <span class="badge rounded-pill bg-danger-subtle text-danger border border-danger-subtle px-3 py-2">
+                <i class="bi bi-exclamation-octagon me-1"></i>Malignant
+              </span>
+              {% else %}
+              <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-3 py-2">
+                <i class="bi bi-check2-circle me-1"></i>Benign
+              </span>
+              {% endif %}
+            </td>
+            <td class="text-end pe-4 fw-semibold">{{ row.confidence }}%</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <div class="empty-state card border-0 shadow-sm rounded-4 p-5 text-center">
+    <div class="empty-icon mx-auto mb-4 rounded-circle d-inline-flex align-items-center justify-content-center">
+      <i class="bi bi-inbox fs-1"></i>
+    </div>
+    <h2 class="h5 fw-bold">No predictions yet</h2>
+    <p class="text-secondary mb-4">Run a prediction on the Predict page—entries will show up here for this session.</p>
+    <a href="{{ url_for('predict') }}" class="btn btn-primary rounded-pill px-4 btn-glow">Go to Predict</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

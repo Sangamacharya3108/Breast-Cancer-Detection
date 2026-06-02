@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero-section position-relative overflow-hidden">
+  <div class="hero-bg-shape"></div>
+  <div class="container position-relative py-5">
+    <div class="row align-items-center hero-min-height g-4">
+      <div class="col-lg-6">
+        <span class="badge badge-soft mb-3 px-3 py-2 rounded-pill">
+          <i class="bi bi-cpu-fill me-1"></i> Deep learning · Histopathology
+        </span>
+        <h1 class="display-4 fw-bold mb-3 lh-tight">
+          Breast Cancer Detection<br>
+          <span class="text-gradient">using AI</span>
+        </h1>
+        <p class="lead text-secondary mb-4 max-w-prose">
+          Upload a histopathology image and get an instant assistive prediction—Benign or Malignant—with calibrated confidence. Built for research demos and coursework showcases.
+        </p>
+        <div class="d-flex flex-wrap gap-3 hero-cta position-relative">
+          <a href="{{ url_for('predict') }}" class="btn btn-primary btn-lg btn-glow px-4 rounded-pill">
+            Get Started <i class="bi bi-arrow-right ms-2"></i>
+          </a>
+          <a href="{{ url_for('about') }}" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
+            Learn more
+          </a>
+        </div>
+        <div class="row g-3 mt-5 pt-2">
+          <div class="col-sm-4">
+            <div class="stat-card p-3 rounded-4 h-100">
+              <div class="fs-4 fw-bold text-primary mb-0">IDC</div>
+              <small class="text-muted">Invasive Ductal Carcinoma dataset</small>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="stat-card p-3 rounded-4 h-100">
+              <div class="fs-4 fw-bold text-primary mb-0">CNN</div>
+              <small class="text-muted">Convolutional neural networks</small>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="stat-card p-3 rounded-4 h-100">
+              <div class="fs-4 fw-bold text-primary mb-0">AI</div>
+              <small class="text-muted">Research-grade pipeline</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <div class="hero-visual mx-auto">
+          <div class="hero-card card border-0 shadow-lg rounded-4 p-4 text-start">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="rounded-circle bg-success bg-opacity-10 p-3 text-success">
+                <i class="bi bi-check-circle-fill fs-4"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">Sample output</div>
+                <small class="text-muted">Illustrative interface</small>
+              </div>
+            </div>
+            <div class="result-preview benign rounded-3 p-3 mb-2">
+              <span class="text-uppercase small fw-semibold text-success">Benign</span>
+              <div class="fs-2 fw-bold">94.2%</div>
+              <small class="text-muted">Model confidence</small>
+            </div>
+            <div class="progress rounded-pill" style="height: 8px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 94%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light-subtle">
+  <div class="container py-4">
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <a href="{{ url_for('predict') }}" class="feature-card-link d-block h-100 text-decoration-none">
+          <div class="feature-card card h-100 border-0 shadow-sm rounded-4 p-4 text-center">
+            <div class="feature-icon mx-auto mb-3 rounded-circle">
+              <i class="bi bi-cloud-upload fs-3"></i>
+            </div>
+            <h3 class="h5 fw-semibold text-body">Upload</h3>
+            <p class="text-muted small mb-2">Drag & drop or browse PNG / JPG histopathology patches.</p>
+            <span class="small fw-semibold text-primary">Open predictor <i class="bi bi-arrow-right-short"></i></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('predict') }}" class="feature-card-link d-block h-100 text-decoration-none">
+          <div class="feature-card card h-100 border-0 shadow-sm rounded-4 p-4 text-center">
+            <div class="feature-icon mx-auto mb-3 rounded-circle">
+              <i class="bi bi-graph-up-arrow fs-3"></i>
+            </div>
+            <h3 class="h5 fw-semibold text-body">Analyze</h3>
+            <p class="text-muted small mb-2">Deep model inference with a clear confidence readout.</p>
+            <span class="small fw-semibold text-primary">Run analysis <i class="bi bi-arrow-right-short"></i></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('history') }}" class="feature-card-link d-block h-100 text-decoration-none">
+          <div class="feature-card card h-100 border-0 shadow-sm rounded-4 p-4 text-center">
+            <div class="feature-icon mx-auto mb-3 rounded-circle">
+              <i class="bi bi-clipboard2-pulse fs-3"></i>
+            </div>
+            <h3 class="h5 fw-semibold text-body">Review</h3>
+            <p class="text-muted small mb-2">Color-coded Benign vs Malignant for quick interpretation.</p>
+            <span class="small fw-semibold text-primary">View history <i class="bi bi-arrow-right-short"></i></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
