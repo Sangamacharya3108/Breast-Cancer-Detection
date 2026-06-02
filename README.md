@@ -60,11 +60,7 @@ python app.py
 ```
 
 ### Step 4: Open in browser
-Once the server starts, open your web browser and go to:
-```
-http://127.0.0.1:5000
-```
-You can now upload a sample histopathology image (like the ones included in the root folder, such as `image.jpg`) to test the predictor.
+Once the server starts, open your web browser. You can now upload a sample histopathology image (like the ones included in the root folder, such as `image.jpg`) to test the predictor.
 
 ---
 
